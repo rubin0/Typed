@@ -1,5 +1,7 @@
 extends Node2D
 
+tool
+
 export(String, MULTILINE) var text : String = "PROVA PROVA"
 
 func _ready() -> void:

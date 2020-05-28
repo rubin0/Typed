@@ -5,10 +5,11 @@ class_name Player
 signal changed_text
 signal submit_text
 
-var text : String
 
 export (int) var speed = 400
-export (int) var increment = 100
+export (int) var run_speed = 800
+export (int) var back_speed = -200
+export (int) var increment = 200
 export (int) var jump_speed = -900
 export (int) var gravity = 1500
 export (float) var max_timeout = 1.5
@@ -18,8 +19,10 @@ onready var bullet = preload("res://Bullet.tscn")
 onready var initial_speed = speed
 
 var velocity = Vector2.ZERO
+var snap_normal = Vector2.DOWN
 
 var action : String
+var text : String
 
 var double_jump : = false
 var can_input : = true
@@ -82,6 +85,7 @@ func _physics_process(delta):
 	match action:
 		"JUMP" :
 			if can_jump:
+				snap_normal = Vector2.ZERO
 				can_jump = false
 				double_jump = true
 				$AnimatedSprite.play("jump")
@@ -97,7 +101,7 @@ func _physics_process(delta):
 			walk()
 		"RUN" :
 			walk()
-			speed = min(1000, speed + increment)
+			speed = run_speed
 		"SLOW" :
 			speed = max(100, speed - increment)
 		"FAST" :
@@ -111,12 +115,12 @@ func _physics_process(delta):
 		"DUCK" :
 			velocity.x = 0
 			state = "DUCK"
-			$AnimatedSprite.offset = Vector2(0, 36)
-			$AnimatedSprite.scale = Vector2(1, 0.5)
+			$AnimatedSprite.offset = Vector2(0, 45)
+			$AnimatedSprite.scale = Vector2(1, 0.65)
 			$CollisionShape2D.disabled = true
 			$CollisionShapeDuck.disabled = false
 		"BACK" :
-			velocity.x = -100
+			velocity.x = back_speed
 			state = "BACK"
 			$AnimatedSprite.play("walk", true)
 	
@@ -152,6 +156,9 @@ func _on_TextWriter_can_input() -> void:
 
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
+	reload()
+	
+func reload() -> void:
 	get_tree().reload_current_scene()
 	
 func save(position : Vector2):
