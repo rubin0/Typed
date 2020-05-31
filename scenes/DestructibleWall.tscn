@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/transparent3x.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Destructible.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 2016, 1152, 96, 96 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 42, 42 )
+
+[node name="DestructibleWall" type="StaticBody2D" groups=[
+"enemy",
+]]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.15, 1.15 )
+texture = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 1.15, 1.15 )
+shape = SubResource( 2 )
+
+[node name="Destructible" type="Node2D" parent="."]
+script = ExtResource( 2 )

@@ -9,34 +9,46 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://scripts/Bullet.gd"
+}, {
 "base": "Sprite",
 "class": "CheckPoint",
 "language": "GDScript",
-"path": "res://Checkpoint.gd"
+"path": "res://scripts/Checkpoint.gd"
 }, {
-"base": "RigidBody2D",
+"base": "Node2D",
 "class": "Destructible",
 "language": "GDScript",
-"path": "res://Destructible.gd"
+"path": "res://scripts/Destructible.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scripts/Enemy.gd"
 }, {
 "base": "Sprite",
 "class": "LetterSprite",
 "language": "GDScript",
-"path": "res://LetterSprite.gd"
+"path": "res://scripts/LetterSprite.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Player.gd"
+"path": "res://scripts/Player.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://StateMachine.gd"
+"path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"Bullet": "",
 "CheckPoint": "",
 "Destructible": "",
+"Enemy": "",
 "LetterSprite": "",
 "Player": "",
 "StateMachine": ""
@@ -45,11 +57,11 @@ _global_script_class_icons={
 [application]
 
 config/name="WriteToWin"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://scenes/Game.tscn"
 
 [autoload]
 
-SaveState="*res://SaveState.gd"
+SaveState="*res://scripts/SaveState.gd"
 
 [display]
 
@@ -78,6 +90,12 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
+
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemies"
 
 [rendering]
 

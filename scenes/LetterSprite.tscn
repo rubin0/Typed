@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/LetterSprite.gd" type="Script" id=1]
+
+
+[node name="Sprite" type="Sprite"]
+position = Vector2( -70.4719, 73.4082 )
+scale = Vector2( 10, 10 )
+script = ExtResource( 1 )

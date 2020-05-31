@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Bullet.tscn" type="PackedScene" id=1]
+
+[node name="Bullets" type="Node2D"]
+
+[node name="Bullet" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -31 )
+direction = Vector2( -1, 0 )
+is_enemy = true
+
+[node name="Bullet2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -86 )
+direction = Vector2( -1, 0 )
+is_enemy = true
+
+[node name="Bullet3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -139 )
+direction = Vector2( -1, 0 )
+is_enemy = true
+
+[node name="Bullet4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -192 )
+direction = Vector2( -1, 0 )
+is_enemy = true
+
+[node name="Bullet8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -246 )
+direction = Vector2( -1, 0 )
+is_enemy = true
+
+[node name="Bullet7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -301 )
+direction = Vector2( -1, 0 )
+is_enemy = true
+
+[node name="Bullet6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -354 )
+direction = Vector2( -1, 0 )
+is_enemy = true
+
+[node name="Bullet5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -407 )
+direction = Vector2( -1, 0 )
+is_enemy = true
