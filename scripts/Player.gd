@@ -41,10 +41,8 @@ func _ready() -> void:
 func _input(event : InputEvent):
 	if !can_input:
 		return
-		
-	if event is InputEventMouseButton:
-		return
-	if event is InputEventWithModifiers and event.is_pressed():
+
+	if event is InputEventKey and event.is_pressed():
 		if event.scancode and event.scancode == KEY_ENTER:
 			var result : bool = submit(text.to_upper())
 			text = ""
@@ -89,12 +87,14 @@ func _physics_process(delta):
 				$AnimatedSprite.play("jump")
 				velocity.y = jump_speed
 				state = "JUMP"
+				$JumpSound.play()
 		"J" :
 			if !is_on_floor() and double_jump:
 				$AnimatedSprite.play("jump")
 				velocity.y = jump_speed
 				double_jump = false
 				state = "JUMP"
+				$JumpSound.play()
 		"WALK" :
 			walk()
 		"RUN" :
@@ -109,6 +109,7 @@ func _physics_process(delta):
 			state = "IDLE"
 		"FIRE" :
 			emit_signal("fire", $Position2D.global_position)
+			$ShootSound.play()
 		"DUCK" :
 			velocity.x = 0
 			state = "DUCK"
@@ -116,6 +117,7 @@ func _physics_process(delta):
 			$AnimatedSprite.scale = Vector2(1, 0.65)
 			$CollisionShape2D.disabled = true
 			$CollisionShapeDuck.disabled = false
+			$DuckSound.play()
 		"BACK" :
 			velocity.x = back_speed
 			state = "BACK"

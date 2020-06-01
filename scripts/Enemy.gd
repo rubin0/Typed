@@ -17,3 +17,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall() or !$Pivot/RayCast2D.is_colliding():
 		direction.x = -direction.x 
 		$Pivot.scale.x = -$Pivot.scale.x
+
+
+func _on_Area2D_body_entered(body: Node) -> void:
+	if body is Player:
+		body.reload()

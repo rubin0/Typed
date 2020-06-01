@@ -5,41 +5,41 @@
 [node name="Bullets" type="Node2D"]
 
 [node name="Bullet" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -31 )
+position = Vector2( 0, 2 )
 direction = Vector2( -1, 0 )
 is_enemy = true
 
 [node name="Bullet2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -86 )
+position = Vector2( 0, -53 )
 direction = Vector2( -1, 0 )
 is_enemy = true
 
 [node name="Bullet3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -139 )
+position = Vector2( 0, -106 )
 direction = Vector2( -1, 0 )
 is_enemy = true
 
 [node name="Bullet4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -192 )
+position = Vector2( 0, -159 )
 direction = Vector2( -1, 0 )
 is_enemy = true
 
 [node name="Bullet8" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -246 )
+position = Vector2( 0, -213 )
 direction = Vector2( -1, 0 )
 is_enemy = true
 
 [node name="Bullet7" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -301 )
+position = Vector2( 0, -268 )
 direction = Vector2( -1, 0 )
 is_enemy = true
 
 [node name="Bullet6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -354 )
+position = Vector2( 0, -321 )
 direction = Vector2( -1, 0 )
 is_enemy = true
 
 [node name="Bullet5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -407 )
+position = Vector2( 0, -374 )
 direction = Vector2( -1, 0 )
 is_enemy = true

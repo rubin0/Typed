@@ -4,7 +4,7 @@ extends Node2D
 onready var Destructible = load("res://scripts/Destructible.gd")
 onready var Player = load("res://scripts/Player.gd")
 
-export (int) var speed = 500
+export (int) var speed = 600
 
 export (Vector2) var direction = Vector2.RIGHT
 export (bool) var is_enemy = false
