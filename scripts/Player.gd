@@ -162,3 +162,7 @@ func reload():
 	
 func save(position : Vector2):
 	SaveState.save(position)
+	
+func trigger_boss_fight():
+	velocity.x = 0
+	state = "IDLE"

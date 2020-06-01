@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide(velocity, Vector2.UP)
 	
-	if is_on_wall() or !$Pivot/RayCast2D.is_colliding():
+	if !$Pivot/RayCast2D.is_colliding():
 		direction.x = -direction.x 
 		$Pivot.scale.x = -$Pivot.scale.x
 
