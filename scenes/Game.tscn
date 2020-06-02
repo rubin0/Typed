@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/transparent3x.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -238,35 +238,31 @@ region = Rect2( 1728, 672, 96, 96 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 1 )
-region = Rect2( 2016, 672, 96, 96 )
+region = Rect2( 1728, 672, 96, 96 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 1 )
-region = Rect2( 2112, 672, 96, 96 )
+region = Rect2( 1824, 672, 96, 96 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 1 )
-region = Rect2( 1728, 672, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 1 )
-region = Rect2( 2400, 672, 96, 96 )
+region = Rect2( 1920, 672, 96, 96 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 1 )
-region = Rect2( 1728, 672, 96, 96 )
+region = Rect2( 2016, 672, 96, 96 )
 
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 1 )
-region = Rect2( 1824, 672, 96, 96 )
+region = Rect2( 2112, 672, 96, 96 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 1 )
-region = Rect2( 1920, 672, 96, 96 )
+region = Rect2( 1728, 672, 96, 96 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 1 )
-region = Rect2( 1728, 672, 96, 96 )
+region = Rect2( 2400, 672, 96, 96 )
 
 [sub_resource type="SpriteFrames" id=24]
 animations = [ {
@@ -276,18 +272,18 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
 "loop": false,
 "name": "jump",
 "speed": 3.0
 }, {
-"frames": [ SubResource( 19 ) ],
+"frames": [ SubResource( 23 ) ],
 "loop": true,
 "name": "duck",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
-"loop": true,
-"name": "walk",
 "speed": 5.0
 } ]
 
@@ -296,21 +292,6 @@ extents = Vector2( 24.6719, 21.5118 )
 
 [sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 39, 362 )
-
-[sub_resource type="Animation" id=27]
-length = 6.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.99 ]
-}
 
 [sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 40, 788 )
@@ -327,7 +308,7 @@ script = ExtResource( 4 )
 [node name="Player" type="KinematicBody2D" parent="." groups=[
 "player",
 ]]
-position = Vector2( 53669, -145 )
+position = Vector2( 281, -224 )
 collision_layer = 2
 collision/safe_margin = 0.15
 script = ExtResource( 2 )
@@ -545,33 +526,31 @@ and walk *back*"
 [node name="Platforms" type="Node2D" parent="."]
 
 [node name="MovingPlatform" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 24718, -62.14 )
+position = Vector2( 24708, -62 )
 
 [node name="KinematicBody2D" parent="Platforms/MovingPlatform" index="0"]
 position = Vector2( -384, 0 )
 
 [node name="CollisionShape2D" parent="Platforms/MovingPlatform/KinematicBody2D" index="1"]
-position = Vector2( 0, 1.14 )
+position = Vector2( 0, 1.001 )
 
-[node name="PathFollow2D" parent="Platforms/MovingPlatform/Path2D" index="0"]
+[node name="Start" parent="Platforms/MovingPlatform" index="1"]
 position = Vector2( -384, 0 )
-offset = 0.0
+
+[node name="End" parent="Platforms/MovingPlatform" index="2"]
+position = Vector2( 1753, 0 )
 
 [node name="MovingPlatform2" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 46596, -62 )
-
-[node name="KinematicBody2D" parent="Platforms/MovingPlatform2" index="0"]
-position = Vector2( -384, 0 )
+position = Vector2( 46212, -62 )
 
 [node name="CollisionShape2D" parent="Platforms/MovingPlatform2/KinematicBody2D" index="1"]
 position = Vector2( 0, 1.14 )
 
-[node name="PathFollow2D" parent="Platforms/MovingPlatform2/Path2D" index="0"]
-position = Vector2( -384, 0 )
-offset = 0.0
+[node name="Area2D" parent="Platforms/MovingPlatform2/KinematicBody2D" index="2"]
+collision_mask = 2
 
-[node name="AnimationPlayer" parent="Platforms/MovingPlatform2" index="2"]
-anims/PathFollow = SubResource( 27 )
+[node name="End" parent="Platforms/MovingPlatform2" index="2"]
+position = Vector2( 2137, 0 )
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -614,7 +593,7 @@ position = Vector2( 46212, -144 )
 position = Vector2( 56194, -233 )
 
 [node name="BossCamera" type="Camera2D" parent="."]
-position = Vector2( 55138, -686 )
+position = Vector2( 55142, -680 )
 zoom = Vector2( 2, 2 )
 drag_margin_v_enabled = true
 drag_margin_left = 1.0
@@ -632,11 +611,16 @@ shape = SubResource( 28 )
 disabled = true
 [connection signal="draw_text" from="." to="Player/TextWriter" method="_on_Game_draw_text"]
 [connection signal="submit_text" from="." to="Player/TextWriter" method="_on_Game_submit_text"]
+[connection signal="cancel_text" from="Player" to="Player/TextWriter" method="_on_Player_cancel_text"]
+[connection signal="changed_text" from="Player" to="Player/TextWriter" method="_on_Player_changed_text"]
+[connection signal="submit_text" from="Player" to="Player/TextWriter" method="_on_Player_submit_text"]
+[connection signal="wrote_boss_word" from="Player" to="Enemies/Boss" method="_on_Player_wrote_boss_word"]
 [connection signal="can_input" from="Player/TextWriter" to="Player" method="_on_TextWriter_can_input"]
-[connection signal="timeout" from="Player/TextWriter" to="Player" method="_on_TextWriter_timeout"]
 [connection signal="tween_all_completed" from="Player/Camera2D/Tween" to="BossCamera" method="_on_Tween_tween_all_completed"]
 [connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="body_exited" from="Triggers/BossTrigger" to="." method="_on_BossTrigger_body_exited"]
+[connection signal="emit_new_word" from="Enemies/Boss" to="Player" method="_on_Boss_emit_new_word"]
+[connection signal="cutscene_completed" from="BossCamera" to="." method="_on_BossCamera_cutscene_completed"]
 
 [editable path="Triggers/SpawnTrigger"]
 

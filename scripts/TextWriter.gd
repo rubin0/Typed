@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	emit_signal("timer", timer)
 	
 
-func _on_Game_draw_text(text : String) -> void:
+func _on_Player_changed_text(text : String) -> void:
 	timer_restart()
 	
 	modulate = Color.white
@@ -40,7 +40,7 @@ func _on_Game_draw_text(text : String) -> void:
 	emit_signal("can_input")
 	
 	
-func _on_Game_submit_text(result : bool) -> void:
+func _on_Player_submit_text(result : bool) -> void:
 	timer_restart()
 	
 	if result:
@@ -69,3 +69,7 @@ func timeout() -> void:
 	
 func timer_restart() -> void:
 	timer = initial_timer
+
+
+func _on_Player_cancel_text() -> void:
+	timeout()

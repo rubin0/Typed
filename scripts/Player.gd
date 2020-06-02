@@ -5,6 +5,8 @@ class_name Player
 signal changed_text
 signal submit_text
 signal fire
+signal cancel_text
+signal wrote_boss_word
 
 export (int) var speed = 400
 export (int) var run_speed = 800
@@ -30,6 +32,8 @@ var is_ducking : = false
 var can_jump : = true
 
 var state = "IDLE"
+
+var boss_word : String = "ROBE"
 
 func _ready() -> void:
 	$AnimatedSprite.play("idle")
@@ -57,12 +61,15 @@ func _input(event : InputEvent):
 		
 func submit(command : String) -> bool:
 	match command:
-		"WALK", "JUMP", "FAST", "SLOW", "FIRE", "STOP", "DUCK", "BACK", "RUN", "J" :
+		"WALK", "JUMP", "FAST", "SLOW", "FIRE", "STOP", "DUCK", "BACK", "RUN", "J", boss_word :
 			action = command
 		_ :
 			return false
 	
 	return true
+	
+func delete_text():
+	emit_signal("cancel_text")
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -122,6 +129,9 @@ func _physics_process(delta):
 			velocity.x = back_speed
 			state = "BACK"
 			$AnimatedSprite.play("walk", true)
+		boss_word :
+			emit_signal("wrote_boss_word")
+			action = "IDLE"
 	
 	if state == "WALK":
 		velocity.x = speed
@@ -164,5 +174,15 @@ func save(position : Vector2):
 	SaveState.save(position)
 	
 func trigger_boss_fight():
+	can_input = false
 	velocity.x = 0
 	state = "IDLE"
+	delete_text()
+	
+	
+func start_boss_fight():
+	can_input = true
+
+
+func _on_Boss_emit_new_word(word : String) -> void:
+	boss_word = word
