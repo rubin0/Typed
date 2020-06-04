@@ -13,6 +13,8 @@ func _ready() -> void:
 	
 	for node in get_tree().get_nodes_in_group("spawn_trigger"):
 		node.connect("triggered", self, "_on_trigger")
+		
+	$Player/Music.play()
 	
 func _on_fire(position : Vector2):
 	var bullet_instance : Bullet = bullet.instance()

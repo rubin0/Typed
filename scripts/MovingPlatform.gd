@@ -7,10 +7,8 @@ func _ready() -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	print(body.name)
 	if body is Player:
 		yield(get_tree().create_timer(1.0), "timeout")
-		print("moving")
 		$AnimationPlayer.play("moving")
 		
 		

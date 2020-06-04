@@ -38,11 +38,6 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://scripts/Player.gd"
-}, {
-"base": "Node",
-"class": "StateMachine",
-"language": "GDScript",
-"path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
@@ -50,8 +45,7 @@ _global_script_class_icons={
 "Destructible": "",
 "Enemy": "",
 "LetterSprite": "",
-"Player": "",
-"StateMachine": ""
+"Player": ""
 }
 
 [application]

@@ -1,11 +1,10 @@
 extends Node2D
-
 tool
-
 export(String, MULTILINE) var text : String = "PROVA PROVA"
 
 func _ready() -> void:
 	var splitted_text = text.to_upper().split("\n")
+	
 	
 	var offset_y : int = 0
 	var offset_x : int = 48
@@ -14,6 +13,8 @@ func _ready() -> void:
 
 	for row in splitted_text:
 		var i = 0
+		
+		row = row.strip_edges()
 		
 		for letter in row:
 			if letter != " ":
@@ -44,3 +45,8 @@ func _ready() -> void:
 func _on_TriggerBack_body_entered(body: Node) -> void:
 	if body is Player:
 		show()
+
+
+func _on_Boss_start_battle() -> void:
+	yield(get_tree().create_timer(2.0), "timeout")
+	self_modulate = self_modulate.linear_interpolate(Color.transparent, 2)

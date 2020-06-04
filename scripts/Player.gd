@@ -28,6 +28,7 @@ var double_jump : = false
 var can_input : = true
 var is_walking : = false
 var is_ducking : = false
+var is_falling : = false
 
 var can_jump : = true
 
@@ -37,6 +38,8 @@ var boss_word : String = "ROBE"
 
 func _ready() -> void:
 	$AnimatedSprite.play("idle")
+	
+	$Music.play()
 	
 	if SaveState.exist_save():
 		global_position = SaveState.get_save_position()
@@ -73,6 +76,10 @@ func delete_text():
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
+	
+	if is_falling:
+		velocity.y = gravity * delta
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	if is_on_floor():
@@ -131,6 +138,7 @@ func _physics_process(delta):
 			$AnimatedSprite.play("walk", true)
 		boss_word :
 			emit_signal("wrote_boss_word")
+			$Camera2D.add_trauma(1)
 			action = "IDLE"
 	
 	if state == "WALK":
@@ -178,6 +186,8 @@ func trigger_boss_fight():
 	velocity.x = 0
 	state = "IDLE"
 	delete_text()
+	$BossBattle.play()
+	$Music.stop()
 	
 	
 func start_boss_fight():
@@ -186,3 +196,16 @@ func start_boss_fight():
 
 func _on_Boss_emit_new_word(word : String) -> void:
 	boss_word = word
+
+
+func _on_Boss_killed() -> void:
+	$VisibilityNotifier2D.disconnect("screen_exited", self, "_on_VisibilityNotifier2D_screen_exited")
+	$CameraTitles.current = true
+	
+	$BossBattle.stop()
+	$Music.play()
+
+func _on_GravityTrigger_body_entered(body: Node) -> void:
+	if body and body.is_in_group("player"):
+		gravity = 30000
+		is_falling = true

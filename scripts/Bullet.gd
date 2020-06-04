@@ -13,10 +13,16 @@ var velocity = Vector2.ZERO
 
 func _process(delta: float) -> void:
 	velocity.x = speed * delta 
-	position += velocity * direction
 	
 	if direction == Vector2.LEFT:
 		$Sprite.flip_v = true
+		
+	if direction == Vector2.DOWN:
+		velocity.x = 0
+		velocity.y = speed * delta
+		$Sprite.rotation_degrees = 0
+		
+	position += velocity * direction
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
