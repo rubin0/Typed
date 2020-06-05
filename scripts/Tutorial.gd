@@ -2,7 +2,12 @@ extends Node2D
 tool
 export(String, MULTILINE) var text : String = "PROVA PROVA"
 
+var t : float
+
 func _ready() -> void:
+	if has_node("VisibilityNotifier2D"):
+		scale = Vector2.ZERO
+		
 	var splitted_text = text.to_upper().split("\n")
 	
 	
@@ -42,9 +47,12 @@ func _ready() -> void:
 		offset_y += 64
 			
 		
-func _on_TriggerBack_body_entered(body: Node) -> void:
-	if body is Player:
-		show()
+func _process(delta: float) -> void:
+	if has_node("VisibilityNotifier2D"):
+		if $VisibilityNotifier2D.is_on_screen():
+			yield(get_tree().create_timer(0.5), "timeout")
+			t += delta * 0.2
+			scale = scale.linear_interpolate(Vector2.ONE, t)
 
 
 func _on_Boss_start_battle() -> void:

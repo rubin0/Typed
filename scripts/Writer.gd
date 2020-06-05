@@ -15,6 +15,6 @@ func draw_text(text : String) -> void:
 
 
 func _on_Boss_clear_text() -> void:
-
+	
 	for child in get_children():
 		child.queue_free()

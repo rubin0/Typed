@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sparkle.png-e2cdec34e052dbb344e05a35e281c434.stex"
+path="res://.import/puff.png-4478e8dc4cf3bad3702f0911a839022d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Explosion/sparkle.png"
-dest_files=[ "res://.import/sparkle.png-e2cdec34e052dbb344e05a35e281c434.stex" ]
+source_file="res://assets/Explosion/puff.png"
+dest_files=[ "res://.import/puff.png-4478e8dc4cf3bad3702f0911a839022d.stex" ]
 
 [params]
 

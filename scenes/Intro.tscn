@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/intro.webm" type="VideoStream" id=1]
+[ext_resource path="res://scripts/Intro.gd" type="Script" id=2]
+
+
+[node name="Intro" type="Control"]
+margin_right = 1280.0
+margin_bottom = 720.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 0.999617, 1.00164 )
+stream = ExtResource( 1 )
+autoplay = true
+buffering_msec = 1000
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="BlackScreen"]
+[connection signal="finished" from="VideoPlayer" to="." method="_on_VideoPlayer_finished"]
+[connection signal="tween_all_completed" from="BlackScreen/Tween" to="." method="_on_Tween_tween_all_completed"]

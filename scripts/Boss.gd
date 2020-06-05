@@ -35,7 +35,7 @@ func trigger():
 	attack_timer.start(attack_delay)
 	$AnimationPlayer.play("idle")
 	emit_signal("start_battle")
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(attack_delay), "timeout")
 	emit_new_word()
 	
 func choose_attack():
@@ -54,7 +54,7 @@ func choose_attack():
 func attack_from_above():
 	var position_indexes = []
 	
-	for i in range(23):
+	for i in range(11):
 		position_indexes.append(i)
 		
 	position_indexes.shuffle()
@@ -64,12 +64,12 @@ func attack_from_above():
 	
 	for index in position_indexes:
 		var bullet_instance : Bullet = bullet.instance()
-		bullet_instance.speed = 350
+		bullet_instance.speed = 300
 		bullet_instance.direction = Vector2.DOWN
 		bullet_instance.is_enemy = true
 		add_child(bullet_instance, true)
 	
-		bullet_instance.global_position.x = position.global_position.x + (index * 96)
+		bullet_instance.global_position.x = position.global_position.x + (index * 192)
 		bullet_instance.global_position.y = position.global_position.y 
 		
 func attack_high():
@@ -96,6 +96,9 @@ func _on_BossHealth_hit() -> void:
 	$Sprite.modulate = Color(color.r, color.g, color.b, color.a)
 	
 	hp -= 1
+	
+	$AudioStreamPlayer.play()
+	$AnimationPlayer.play("hit")
 	
 	if hp == 0:
 		$Explosion/AnimationPlayer.play("Explode")

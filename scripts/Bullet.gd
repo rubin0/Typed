@@ -16,11 +16,13 @@ func _process(delta: float) -> void:
 	
 	if direction == Vector2.LEFT:
 		$Sprite.flip_v = true
+		$PivotParticles.scale.x = -1
 		
 	if direction == Vector2.DOWN:
 		velocity.x = 0
 		velocity.y = speed * delta
 		$Sprite.rotation_degrees = 0
+		$PivotParticles.rotation_degrees = 90
 		
 	position += velocity * direction
 

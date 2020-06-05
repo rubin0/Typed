@@ -1,5 +1,7 @@
 class_name Enemy
 
+signal hit
+
 extends KinematicBody2D
 
 export (int) var speed = 400
@@ -22,3 +24,7 @@ func _physics_process(delta: float) -> void:
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body is Player:
 		body.reload()
+		
+func hit():
+	get_parent().play_hit_sound()
+	queue_free()

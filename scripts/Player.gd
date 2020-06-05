@@ -14,6 +14,7 @@ export (int) var back_speed = -200
 export (int) var increment = 200
 export (int) var jump_speed = -900
 export (int) var gravity = 1500
+export (int) var title_gravity = 25000
 export (float) var max_timeout = 1.5
 
 onready var initial_speed = speed
@@ -102,6 +103,7 @@ func _physics_process(delta):
 				velocity.y = jump_speed
 				state = "JUMP"
 				$JumpSound.play()
+				$JumpParticles/Dust.emitting = true
 		"J" :
 			if !is_on_floor() and double_jump:
 				$AnimatedSprite.play("jump")
@@ -109,6 +111,7 @@ func _physics_process(delta):
 				double_jump = false
 				state = "JUMP"
 				$JumpSound.play()
+				$JumpParticles/Dust.emitting = true
 		"WALK" :
 			walk()
 		"RUN" :
@@ -151,6 +154,7 @@ func _physics_process(delta):
 	if state == "IDLE":
 		speed = initial_speed
 		$AnimatedSprite.play("idle")
+		$AnimationPlayer.play("idle")
 		
 	if state != "DUCK":
 		$AnimatedSprite.offset = Vector2(0, 0)
@@ -162,6 +166,7 @@ func _physics_process(delta):
 
 func walk():
 	state = "WALK"
+	$AnimationPlayer.play("walk")
 
 
 func _on_TextWriter_timeout() -> void:
@@ -207,5 +212,5 @@ func _on_Boss_killed() -> void:
 
 func _on_GravityTrigger_body_entered(body: Node) -> void:
 	if body and body.is_in_group("player"):
-		gravity = 30000
+		gravity = title_gravity
 		is_falling = true
