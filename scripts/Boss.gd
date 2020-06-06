@@ -15,7 +15,7 @@ onready var bullets_low = preload("res://scenes/BulletsLow.tscn")
 
 var attack_timer : Timer
 
-var words = ["DIEMONSTERDIE", "KAMEHAMEHA", "GAMELOOP"]
+var words = ["RASENGAN", "KAMEHAMEHA", "GOMUGOMUNOPISTOL" , "OMAEWAMOUSHINDERU"]
 
 var word : String
 var percentage : float
@@ -25,7 +25,6 @@ var hp = 4
 func _ready() -> void:
 	percentage = 1.0 / words.size()
 	set_process(false)
-	words.shuffle()
 	hp = words.size()
 
 

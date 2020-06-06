@@ -186,7 +186,6 @@ color_ramp = SubResource( 4 )
 
 [node name="FireTrailParticles2D2" type="CPUParticles2D" parent="FireTrails"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
-emitting = false
 amount = 50
 lifetime = 0.5
 randomness = 0.5
@@ -211,7 +210,6 @@ color_ramp = SubResource( 4 )
 
 [node name="FireTrailParticles2D3" type="CPUParticles2D" parent="FireTrails"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
-emitting = false
 amount = 50
 lifetime = 0.5
 randomness = 0.5
@@ -236,7 +234,6 @@ color_ramp = SubResource( 4 )
 
 [node name="FireTrailParticles2D4" type="CPUParticles2D" parent="FireTrails"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
-emitting = false
 amount = 50
 lifetime = 0.5
 randomness = 0.5

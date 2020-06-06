@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/transparent3x.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -23,269 +23,8 @@
 [ext_resource path="res://assets/sound/music.wav" type="AudioStream" id=21]
 [ext_resource path="res://assets/sound/hit.wav" type="AudioStream" id=22]
 [ext_resource path="res://scripts/Enemies.gd" type="Script" id=23]
-
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 96, 96, 0.00012207, 96, 0.00012207, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 96, 96, 0.00012207, 96, 0.00012207, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 96, 96, 0.00012207, 96, 0.00012207, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 96, 96, 0.00012207, 96, 0.00012207, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 96, 96, 0.00012207, 96, 0.00012207, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( 96, 96, 0.00012207, 96, 0.00012207, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 96, 96, 0.00012207, 96, 0.00012207, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( 96, 96, 0.00012207, 96, 0.00012207, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( 96, 0, 96, 96, 0, 96 )
-
-[sub_resource type="ConvexPolygonShape2D" id=10]
-points = PoolVector2Array( 0, 0, 96, 96, 0, 96 )
-
-[sub_resource type="ConvexPolygonShape2D" id=11]
-points = PoolVector2Array( 96, 0, 96, 96, 0, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=12]
-points = PoolVector2Array( 96, 96, 96, 0, 96, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=13]
-points = PoolVector2Array( 0, 0, 96, 0, 0, 96 )
-
-[sub_resource type="TileSet" id=14]
-1/name = "transparent3x.png 1"
-1/texture = ExtResource( 1 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 1727, -1, 288, 288 )
-1/tile_mode = 2
-1/autotile/icon_coordinate = Vector2( 0, 0 )
-1/autotile/tile_size = Vector2( 96, 96 )
-1/autotile/spacing = 0
-1/autotile/occluder_map = [  ]
-1/autotile/navpoly_map = [  ]
-1/autotile/priority_map = [  ]
-1/autotile/z_index_map = [  ]
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape = SubResource( 1 )
-1/shape_one_way = false
-1/shape_one_way_margin = 1.0
-1/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 7 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 2 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-1/z_index = 0
-2/name = "transparent3x.png 2"
-2/texture = ExtResource( 1 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 1919, 287, 192, 192 )
-2/tile_mode = 2
-2/autotile/icon_coordinate = Vector2( 0, 0 )
-2/autotile/tile_size = Vector2( 96, 96 )
-2/autotile/spacing = 0
-2/autotile/occluder_map = [  ]
-2/autotile/navpoly_map = [  ]
-2/autotile/priority_map = [  ]
-2/autotile/z_index_map = [  ]
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape = SubResource( 9 )
-2/shape_one_way = false
-2/shape_one_way_margin = 1.0
-2/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 9 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 11 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 12 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 13 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-2/z_index = 0
-3/name = "transparent3x.png 3"
-3/texture = ExtResource( 1 )
-3/tex_offset = Vector2( 0, 0 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 1631, 863, 96, 96 )
-3/tile_mode = 0
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 0
-4/name = "transparent3x.png 4"
-4/texture = ExtResource( 1 )
-4/tex_offset = Vector2( 0, 0 )
-4/modulate = Color( 1, 1, 1, 1 )
-4/region = Rect2( 1727, 287, 192, 192 )
-4/tile_mode = 2
-4/autotile/icon_coordinate = Vector2( 0, 0 )
-4/autotile/tile_size = Vector2( 96, 96 )
-4/autotile/spacing = 0
-4/autotile/occluder_map = [  ]
-4/autotile/navpoly_map = [  ]
-4/autotile/priority_map = [  ]
-4/autotile/z_index_map = [  ]
-4/occluder_offset = Vector2( 0, 0 )
-4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, 0 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape_one_way = false
-4/shape_one_way_margin = 0.0
-4/shapes = [  ]
-4/z_index = 0
-5/name = "transparent3x.png 5"
-5/texture = ExtResource( 1 )
-5/tex_offset = Vector2( 0, 0 )
-5/modulate = Color( 1, 1, 1, 1 )
-5/region = Rect2( 479, 1439, 96, 96 )
-5/tile_mode = 0
-5/occluder_offset = Vector2( 0, 0 )
-5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, 0 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape_one_way = false
-5/shape_one_way_margin = 0.0
-5/shapes = [  ]
-5/z_index = 0
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
-region = Rect2( 1728, 672, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
-region = Rect2( 1728, 672, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 1 )
-region = Rect2( 1824, 672, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 1 )
-region = Rect2( 1920, 672, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 1 )
-region = Rect2( 2400, 672, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 1 )
-region = Rect2( 2016, 672, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 1 )
-region = Rect2( 2112, 672, 96, 96 )
-
-[sub_resource type="SpriteFrames" id=22]
-animations = [ {
-"frames": [ SubResource( 15 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 19 ) ],
-"loop": true,
-"name": "duck",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 20 ), SubResource( 21 ) ],
-"loop": false,
-"name": "jump",
-"speed": 3.0
-} ]
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=24]
+[ext_resource path="res://scenes/AnimatedSprite.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 36.9435, 21.8645 )
@@ -296,6 +35,36 @@ region = Rect2( 3240, 2032, 8, 8 )
 
 [sub_resource type="Animation" id=25]
 length = 2.0
+
+[sub_resource type="Animation" id=30]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("JumpParticles/Dust:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "jump2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("JumpParticles/Dust2:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=26]
 loop = true
@@ -323,7 +92,7 @@ extents = Vector2( 40, 788 )
 
 [node name="Game" type="TileMap"]
 position = Vector2( 377, -36 )
-tile_set = SubResource( 14 )
+tile_set = ExtResource( 24 )
 cell_size = Vector2( 96, 96 )
 collision_mask = 6
 format = 1
@@ -339,11 +108,7 @@ collision/safe_margin = 0.15
 script = ExtResource( 2 )
 back_speed = -300
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-position = Vector2( 4, -13 )
-frames = SubResource( 22 )
-animation = "idle"
-playing = true
+[node name="AnimatedSprite" parent="Player" instance=ExtResource( 25 )]
 
 [node name="TextWriter" type="Node2D" parent="Player"]
 self_modulate = Color( 0.984314, 0.0313726, 0.0313726, 1 )
@@ -424,30 +189,51 @@ damping = 1.0
 scale_amount = 0.8
 anim_speed_random = 0.09
 
+[node name="Dust2" type="CPUParticles2D" parent="Player/JumpParticles"]
+position = Vector2( 21, 0 )
+rotation = 2.88514
+emitting = false
+amount = 20
+lifetime = 0.45
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+randomness = 1.0
+local_coords = false
+texture = SubResource( 24 )
+emission_shape = 2
+emission_rect_extents = Vector2( 45, 5 )
+spread = 47.34
+damping = 1.0
+scale_amount = 0.8
+anim_speed_random = 0.09
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 anims/idle = SubResource( 25 )
+anims/jump = SubResource( 30 )
+anims/jump2 = SubResource( 31 )
 anims/walk = SubResource( 26 )
 
 [node name="Triggers" type="Node2D" parent="."]
 position = Vector2( 3, 6 )
 
 [node name="Checkpoint" parent="Triggers" instance=ExtResource( 6 )]
-position = Vector2( 14753, -141 )
+position = Vector2( 14753, -144 )
 
 [node name="Checkpoint2" parent="Triggers" instance=ExtResource( 6 )]
-position = Vector2( 23094, -138 )
+position = Vector2( 23094, -144 )
 
 [node name="Checkpoint3" parent="Triggers" instance=ExtResource( 6 )]
-position = Vector2( 33377, -137 )
+position = Vector2( 33377, -144 )
 
 [node name="Checkpoint4" parent="Triggers" instance=ExtResource( 6 )]
-position = Vector2( 43740, -522 )
+position = Vector2( 43740, -528 )
 
 [node name="Checkpoint5" parent="Triggers" instance=ExtResource( 6 )]
-position = Vector2( 48716, -138 )
+position = Vector2( 48716, -144 )
 
 [node name="Checkpoint6" parent="Triggers" instance=ExtResource( 6 )]
-position = Vector2( 53266, -138 )
+position = Vector2( 53266, -144 )
 
 [node name="SpawnTrigger" parent="Triggers" groups=[
 "spawn_trigger",
@@ -743,9 +529,7 @@ I dont have all day"
 position = Vector2( 58559, 10426 )
 script = ExtResource( 5 )
 text = "All right Im leaving
-
-here are pictures of cute animals 
-to pass the time
+CIAO
 "
 
 [node name="Platforms" type="Node2D" parent="."]

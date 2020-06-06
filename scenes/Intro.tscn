@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/intro.webm" type="VideoStream" id=1]
 [ext_resource path="res://scripts/Intro.gd" type="Script" id=2]
 
-
 [node name="Intro" type="Control"]
 margin_right = 1280.0
 margin_bottom = 720.0

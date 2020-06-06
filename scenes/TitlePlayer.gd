@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-class_name Player
-
 signal changed_text
 signal submit_text
 signal fire
@@ -35,15 +33,8 @@ var can_jump : = true
 
 var state = "IDLE"
 
-var boss_word : String = "ROBE"
-
 func _ready() -> void:
 	$AnimatedSprite.play("idle")
-	
-	$Music.play()
-	
-	if SaveState.exist_save():
-		global_position = SaveState.get_save_position()
 
 
 func _input(event : InputEvent):
@@ -65,7 +56,7 @@ func _input(event : InputEvent):
 		
 func submit(command : String) -> bool:
 	match command:
-		"WALK", "JUMP", "FAST", "SLOW", "FIRE", "STOP", "DUCK", "BACK", "RUN", "J", boss_word :
+		"WALK", "JUMP", "FAST", "SLOW", "FIRE", "STOP", "DUCK", "BACK", "RUN", "J":
 			action = command
 		_ :
 			return false
@@ -139,10 +130,6 @@ func _physics_process(delta):
 			velocity.x = back_speed
 			state = "BACK"
 			$AnimatedSprite.play("walk", true)
-		boss_word :
-			emit_signal("wrote_boss_word")
-			$Camera2D.add_trauma(1)
-			action = "IDLE"
 	
 	if state == "WALK":
 		velocity.x = speed
@@ -175,42 +162,3 @@ func _on_TextWriter_timeout() -> void:
 
 func _on_TextWriter_can_input() -> void:
 	can_input = true
-
-
-func _on_VisibilityNotifier2D_screen_exited() -> void:
-	reload()
-	
-func reload():
-	return get_tree().reload_current_scene()
-	
-func save(position : Vector2):
-	SaveState.save(position)
-	
-func trigger_boss_fight():
-	can_input = false
-	velocity.x = 0
-	state = "IDLE"
-	delete_text()
-	$BossBattle.play()
-	$Music.stop()
-	
-	
-func start_boss_fight():
-	can_input = true
-
-
-func _on_Boss_emit_new_word(word : String) -> void:
-	boss_word = word
-
-
-func _on_Boss_killed() -> void:
-	$VisibilityNotifier2D.disconnect("screen_exited", self, "_on_VisibilityNotifier2D_screen_exited")
-	$CameraTitles.current = true
-	
-	$BossBattle.stop()
-	$Music.play()
-
-func _on_GravityTrigger_body_entered(body: Node) -> void:
-	if body and body.is_in_group("player"):
-		gravity = title_gravity
-		is_falling = true
