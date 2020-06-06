@@ -1,0 +1,241 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://assets/transparent3x.png" type="Texture" id=1]
+[ext_resource path="res://resources/CollisionShapePlayer.tres" type="Shape2D" id=2]
+[ext_resource path="res://scripts/TextWriter.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=4]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://assets/sound/jump.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sound/boss_music.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/music.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/shoot.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/quack.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/AnimatedSprite.tscn" type="PackedScene" id=11]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 1728, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 2016, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 2112, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 2400, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 1728, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 1824, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 1920, 672, 96, 96 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": false,
+"name": "jump",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "duck",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 36.9435, 21.8645 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 3240, 2032, 8, 8 )
+
+[sub_resource type="Animation" id=11]
+length = 2.0
+
+[sub_resource type="Animation" id=12]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("JumpParticles/Dust:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "jump2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("JumpParticles/Dust2:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=14]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, -5.0, 0.0 ]
+}
+
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
+position = Vector2( 52981, -131 )
+collision_layer = 2
+collision/safe_margin = 0.15
+script = ExtResource( 4 )
+back_speed = -300
+
+[node name="AnimatedSprite" parent="." instance=ExtResource( 11 )]
+frames = SubResource( 8 )
+
+[node name="TextWriter" type="Node2D" parent="."]
+self_modulate = Color( 0.984314, 0.0313726, 0.0313726, 1 )
+position = Vector2( 0, -160 )
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 2, 2 )
+limit_left = 0
+limit_bottom = 0
+limit_smoothed = true
+smoothing_enabled = true
+script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="CameraTitles" type="Camera2D" parent="."]
+position = Vector2( 955, -555 )
+zoom = Vector2( 2, 2 )
+limit_smoothed = true
+smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4, 1.92 )
+scale = Vector2( 0.995, 0.388 )
+shape = ExtResource( 2 )
+
+[node name="CollisionShapeDuck" type="CollisionShape2D" parent="."]
+position = Vector2( 4.017, 18.617 )
+scale = Vector2( 0.974, 0.76 )
+shape = SubResource( 9 )
+disabled = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 80, 1 )
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 80, 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 4, -21 )
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+
+[node name="DuckSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="BossBattle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="JumpParticles" type="Node2D" parent="."]
+position = Vector2( -16, 35 )
+
+[node name="Dust" type="CPUParticles2D" parent="JumpParticles"]
+position = Vector2( 21, 0 )
+rotation = 2.88514
+emitting = false
+amount = 20
+lifetime = 0.45
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+randomness = 1.0
+local_coords = false
+texture = SubResource( 10 )
+emission_shape = 2
+emission_rect_extents = Vector2( 45, 5 )
+spread = 47.34
+damping = 1.0
+scale_amount = 0.8
+anim_speed_random = 0.09
+
+[node name="Dust2" type="CPUParticles2D" parent="JumpParticles"]
+position = Vector2( 21, 0 )
+rotation = 2.88514
+emitting = false
+amount = 20
+lifetime = 0.45
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+randomness = 1.0
+local_coords = false
+texture = SubResource( 10 )
+emission_shape = 2
+emission_rect_extents = Vector2( 45, 5 )
+spread = 47.34
+damping = 1.0
+scale_amount = 0.8
+anim_speed_random = 0.09
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 11 )
+anims/jump = SubResource( 12 )
+anims/jump2 = SubResource( 13 )
+anims/walk = SubResource( 14 )
+[connection signal="cancel_text" from="." to="TextWriter" method="_on_Player_cancel_text"]
+[connection signal="changed_text" from="." to="TextWriter" method="_on_Player_changed_text"]
+[connection signal="submit_text" from="." to="TextWriter" method="_on_Player_submit_text"]
+[connection signal="can_input" from="TextWriter" to="." method="_on_TextWriter_can_input"]
+[connection signal="timeout" from="TextWriter" to="." method="_on_TextWriter_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

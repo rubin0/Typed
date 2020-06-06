@@ -65,7 +65,7 @@ func _input(event : InputEvent):
 		
 func submit(command : String) -> bool:
 	match command:
-		"WALK", "JUMP", "FAST", "SLOW", "FIRE", "STOP", "DUCK", "BACK", "RUN", "J", boss_word :
+		"WALK", "JUMP", "FAST", "SLOW", "FIRE", "STOP", "DUCK", "BACK", "RUN", "J", "START", boss_word :
 			action = command
 		_ :
 			return false
@@ -88,10 +88,11 @@ func _physics_process(delta):
 		can_jump = true
 	
 	if state == "JUMP" and is_on_floor():
-		state = "WALK"
+		walk()
 		
 	if velocity.x == 0 and state != "DUCK":
 		state = "IDLE"
+		$AnimationPlayer.play("idle")
 	
 	match action:
 		"JUMP" :
@@ -113,6 +114,8 @@ func _physics_process(delta):
 				$JumpSound.play()
 				$AnimationPlayer.play("jump2")
 		"WALK" :
+			walk()
+		"START" :
 			walk()
 		"RUN" :
 			walk()
@@ -194,6 +197,13 @@ func trigger_boss_fight():
 	$BossBattle.play()
 	$Music.stop()
 	
+func idle():
+	can_input = false
+	velocity.x = 0
+	state = "IDLE"
+	delete_text()
+	$Music.stop()
+	$AnimatedSprite.visible = false
 	
 func start_boss_fight():
 	can_input = true

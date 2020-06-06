@@ -1,18 +1,272 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/AnimatedSprite.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/TitleWriter.gd" type="Script" id=3]
-[ext_resource path="res://scenes/TitlePlayer.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Title.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Tutorial.gd" type="Script" id=4]
+[ext_resource path="res://scenes/IntroTrigger.gd" type="Script" id=5]
+[ext_resource path="res://assets/transparent3x.png" type="Texture" id=6]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=7]
+[ext_resource path="res://assets/sound/jump.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sound/shoot.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sound/quack.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/boss_music.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/music.wav" type="AudioStream" id=12]
+[ext_resource path="res://resources/CollisionShapePlayer.tres" type="Shape2D" id=13]
+[ext_resource path="res://scripts/TextWriter.gd" type="Script" id=14]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=15]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 6 )
+region = Rect2( 1728, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 6 )
+region = Rect2( 1728, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 6 )
+region = Rect2( 1824, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 6 )
+region = Rect2( 1920, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 6 )
+region = Rect2( 2400, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 2016, 672, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 2112, 672, 96, 96 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "duck",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ) ],
+"loop": false,
+"name": "jump",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 36.9435, 21.8645 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 3240, 2032, 8, 8 )
+
+[sub_resource type="Animation" id=12]
+length = 2.0
+
+[sub_resource type="Animation" id=13]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("JumpParticles/Dust:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "jump2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("JumpParticles/Dust2:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=15]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, -5.0, 0.0 ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 36.4539, 34.0394 )
+extents = Vector2( 36, 37 )
 
 [node name="Title" type="TileMap"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 96, 96 )
 format = 1
-tile_data = PoolIntArray( 0, 1, 0, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 6, 1, 1, 7, 1, 1, 8, 1, 1, 9, 1, 1, 10, 1, 1, 11, 1, 1, 12, 1, 1, 13, 1, 1, 14, 1, 1, 15, 1, 1, 16, 1, 1, 17, 1, 1, 18, 1, 1, 19, 1, 1, 20, 1, 1, 21, 1, 1, 22, 1, 1, 23, 1, 1, 24, 1, 1, 25, 1, 1, 26, 1, 2, 65536, 1, 65536, 65562, 1, 65538, 131072, 1, 65536, 131075, 5, 0, 131095, 5, 0, 131098, 1, 65538, 196608, 1, 65536, 196634, 1, 65538, 262144, 1, 65536, 262148, 4, 0, 262149, 1, 131073, 262150, 1, 131073, 262151, 1, 131073, 262152, 1, 131073, 262153, 1, 131073, 262154, 1, 131073, 262155, 1, 131073, 262156, 1, 131073, 262157, 1, 131073, 262158, 1, 131073, 262159, 1, 131073, 262160, 1, 131073, 262161, 1, 131073, 262162, 1, 131073, 262163, 1, 131073, 262164, 1, 131073, 262165, 1, 131073, 262166, 4, 1, 262170, 1, 65538, 327680, 1, 65536, 327684, 1, 65538, 327702, 1, 65536, 327706, 1, 65538, 393216, 1, 65536, 393220, 1, 65538, 393238, 1, 65536, 393242, 1, 65538, 458752, 1, 65536, 458756, 1, 65538, 458774, 1, 65536, 458778, 1, 65538, 524288, 1, 65536, 524292, 1, 65538, 524310, 1, 65536, 524314, 1, 65538, 589824, 1, 65536, 589828, 1, 65538, 589846, 1, 65536, 589850, 1, 65538, 655360, 1, 65536, 655364, 1, 65538, 655379, 3, 0, 655382, 1, 65536, 655386, 1, 65538, 720896, 1, 65536, 720900, 4, 65536, 720901, 1, 1, 720902, 1, 1, 720903, 1, 1, 720904, 1, 1, 720905, 1, 1, 720906, 1, 1, 720907, 1, 1, 720908, 1, 1, 720909, 1, 1, 720910, 1, 1, 720911, 1, 1, 720912, 1, 1, 720913, 1, 1, 720914, 1, 1, 720915, 1, 1, 720916, 1, 1, 720917, 1, 1, 720918, 4, 65537, 720922, 1, 65538, 786432, 1, 65536, 786435, 5, 0, 786455, 5, 0, 786458, 1, 65538, 851968, 1, 65536, 851994, 1, 65538, 917504, 1, 131072, 917505, 1, 131073, 917506, 1, 131073, 917507, 1, 131073, 917508, 1, 131073, 917509, 1, 131073, 917510, 1, 131073, 917511, 1, 131073, 917512, 1, 131073, 917513, 1, 131073, 917514, 1, 131073, 917515, 1, 131073, 917516, 1, 131073, 917517, 1, 131073, 917518, 1, 131073, 917519, 1, 131073, 917520, 1, 131073, 917521, 1, 131073, 917522, 1, 131073, 917523, 1, 131073, 917524, 1, 131073, 917525, 1, 131073, 917526, 1, 131073, 917527, 1, 131073, 917528, 1, 131073, 917529, 1, 131073, 917530, 1, 131074 )
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 6, 1, 1, 7, 1, 1, 8, 1, 1, 9, 1, 1, 10, 1, 1, 11, 1, 1, 12, 1, 1, 13, 1, 1, 14, 1, 1, 15, 1, 1, 16, 1, 1, 17, 1, 1, 18, 1, 1, 19, 1, 1, 20, 1, 1, 21, 1, 1, 22, 1, 1, 23, 1, 1, 24, 1, 1, 25, 1, 1, 26, 1, 2, 65536, 1, 65536, 65562, 1, 65538, 131072, 1, 65536, 131075, 5, 0, 131095, 5, 0, 131098, 1, 65538, 196608, 1, 65536, 196634, 1, 65538, 262144, 1, 65536, 262148, 4, 0, 262149, 1, 131073, 262150, 1, 131073, 262151, 1, 131073, 262152, 1, 131073, 262153, 1, 131073, 262154, 1, 131073, 262155, 1, 131073, 262156, 1, 131073, 262157, 1, 131073, 262158, 1, 131073, 262159, 1, 131073, 262160, 1, 131073, 262161, 1, 131073, 262162, 1, 131073, 262163, 1, 131073, 262164, 1, 131073, 262165, 1, 131073, 262166, 4, 1, 262170, 1, 65538, 327680, 1, 65536, 327684, 1, 65538, 327702, 1, 65536, 327706, 1, 65538, 393216, 1, 65536, 393220, 1, 65538, 393238, 1, 65536, 393242, 1, 65538, 458752, 1, 65536, 458754, 5, 0, 458756, 1, 65538, 458774, 1, 65536, 458776, 5, 0, 458778, 1, 65538, 524288, 1, 65536, 524292, 1, 65538, 524310, 1, 65536, 524314, 1, 65538, 589824, 1, 65536, 589828, 1, 65538, 589846, 1, 65536, 589850, 1, 65538, 655360, 1, 65536, 655364, 1, 65538, 655379, 7, 0, 655382, 1, 65536, 655386, 1, 65538, 720896, 1, 65536, 720900, 4, 65536, 720901, 1, 1, 720902, 1, 1, 720903, 1, 1, 720904, 1, 1, 720905, 1, 1, 720906, 1, 1, 720907, 1, 1, 720908, 1, 1, 720909, 1, 1, 720910, 1, 1, 720911, 1, 1, 720912, 1, 1, 720913, 1, 1, 720914, 1, 1, 720915, 1, 1, 720916, 1, 1, 720917, 1, 1, 720918, 4, 65537, 720922, 1, 65538, 786432, 1, 65536, 786435, 5, 0, 786455, 5, 0, 786458, 1, 65538, 851968, 1, 65536, 851981, 5, 0, 851994, 1, 65538, 917504, 1, 131072, 917505, 1, 131073, 917506, 1, 131073, 917507, 1, 131073, 917508, 1, 131073, 917509, 1, 131073, 917510, 1, 131073, 917511, 1, 131073, 917512, 1, 131073, 917513, 1, 131073, 917514, 1, 131073, 917515, 1, 131073, 917516, 1, 131073, 917517, 1, 131073, 917518, 1, 131073, 917519, 1, 131073, 917520, 1, 131073, 917521, 1, 131073, 917522, 1, 131073, 917523, 1, 131073, 917524, 1, 131073, 917525, 1, 131073, 917526, 1, 131073, 917527, 1, 131073, 917528, 1, 131073, 917529, 1, 131073, 917530, 1, 131074 )
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 2588.0
+margin_bottom = 1437.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackScreen" type="ColorRect" parent="Control"]
+modulate = Color( 1, 1, 1, 0 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -336.0
+margin_top = -204.0
+margin_right = -336.0
+margin_bottom = -204.0
+rect_scale = Vector2( 1.1792, 1.19135 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Control/BlackScreen"]
+
+[node name="Player" type="KinematicBody2D" parent="." groups=[
+"player",
+]]
+position = Vector2( 658, 955 )
+collision_layer = 2
+collision/safe_margin = 0.15
+script = ExtResource( 7 )
+back_speed = -300
+
+[node name="AnimatedSprite" parent="Player" instance=ExtResource( 2 )]
+frames = SubResource( 9 )
+
+[node name="TextWriter" type="Node2D" parent="Player"]
+self_modulate = Color( 0.984314, 0.0313726, 0.0313726, 1 )
+position = Vector2( 80, -98 )
+script = ExtResource( 14 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2( 2, 2 )
+limit_left = 0
+limit_bottom = 0
+limit_smoothed = true
+smoothing_enabled = true
+script = ExtResource( 15 )
+
+[node name="Tween" type="Tween" parent="Player/Camera2D"]
+
+[node name="CameraTitles" type="Camera2D" parent="Player"]
+position = Vector2( 961, -597 )
+zoom = Vector2( 2, 2 )
+limit_smoothed = true
+smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 4, 1.92 )
+scale = Vector2( 0.995, 0.388 )
+shape = ExtResource( 13 )
+
+[node name="CollisionShapeDuck" type="CollisionShape2D" parent="Player"]
+position = Vector2( 4.017, 18.617 )
+scale = Vector2( 0.974, 0.76 )
+shape = SubResource( 10 )
+disabled = true
+
+[node name="Position2D" type="Position2D" parent="Player"]
+position = Vector2( 80, 1 )
+
+[node name="Position2D2" type="Position2D" parent="Player"]
+position = Vector2( 80, 1 )
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 8 )
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 9 )
+
+[node name="DuckSound" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 10 )
+
+[node name="Music" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 11 )
+
+[node name="BossBattle" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 12 )
+
+[node name="JumpParticles" type="Node2D" parent="Player"]
+position = Vector2( -16, 35 )
+
+[node name="Dust" type="CPUParticles2D" parent="Player/JumpParticles"]
+position = Vector2( 21, 0 )
+rotation = 2.88514
+emitting = false
+amount = 20
+lifetime = 0.45
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+randomness = 1.0
+local_coords = false
+texture = SubResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 45, 5 )
+spread = 47.34
+damping = 1.0
+scale_amount = 0.8
+anim_speed_random = 0.09
+
+[node name="Dust2" type="CPUParticles2D" parent="Player/JumpParticles"]
+position = Vector2( 21, 0 )
+rotation = 2.88514
+emitting = false
+amount = 20
+lifetime = 0.45
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+randomness = 1.0
+local_coords = false
+texture = SubResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 45, 5 )
+spread = 47.34
+damping = 1.0
+scale_amount = 0.8
+anim_speed_random = 0.09
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+anims/idle = SubResource( 12 )
+anims/jump = SubResource( 13 )
+anims/jump2 = SubResource( 14 )
+anims/walk = SubResource( 15 )
 
 [node name="Typed" type="TileMap" parent="."]
 position = Vector2( 235, 101 )
@@ -22,24 +276,33 @@ cell_size = Vector2( 96, 96 )
 format = 1
 tile_data = PoolIntArray( 196611, 6, 65542, 196612, 6, 65547, 196613, 6, 65538, 196614, 6, 4, 196615, 6, 3 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 686, 1009 )
-scale = Vector2( 1.06985, 0.998843 )
-script = ExtResource( 4 )
-
-[node name="TitleWriter" type="Node2D" parent="KinematicBody2D"]
-position = Vector2( -641.212, -1010.17 )
-scale = Vector2( 0.934712, 1.00116 )
-script = ExtResource( 3 )
-
-[node name="AnimatedSprite" parent="KinematicBody2D" instance=ExtResource( 2 )]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 3.73895, 1.0011 )
-shape = SubResource( 1 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2( 1.06985, 0.998843 )
 anchor_mode = 0
 current = true
 zoom = Vector2( 2.025, 2 )
+
+[node name="Text" type="Node2D" parent="."]
+position = Vector2( 738, 202 )
+script = ExtResource( 4 )
+text = "Type *start* then press enter"
+
+[node name="Text2" type="Node2D" parent="."]
+position = Vector2( 1155, 286 )
+script = ExtResource( 4 )
+text = "to begin!"
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1873, 1017 )
+shape = SubResource( 1 )
+[connection signal="tween_all_completed" from="Control/BlackScreen/Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="cancel_text" from="Player" to="Player/TextWriter" method="_on_Player_cancel_text"]
+[connection signal="changed_text" from="Player" to="Player/TextWriter" method="_on_Player_changed_text"]
+[connection signal="submit_text" from="Player" to="Player/TextWriter" method="_on_Player_submit_text"]
+[connection signal="can_input" from="Player/TextWriter" to="Player" method="_on_TextWriter_can_input"]
+[connection signal="timeout" from="Player/TextWriter" to="Player" method="_on_TextWriter_timeout"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
+[connection signal="entered" from="Area2D" to="." method="_on_Area2D_entered" flags=6]

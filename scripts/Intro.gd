@@ -9,4 +9,4 @@ func _on_VideoPlayer_finished() -> void:
 	$BlackScreen/Tween.start()
 
 func _on_Tween_tween_all_completed() -> void:
-	get_tree().change_scene("res://scenes/Game.tscn")
+	SceneManager.to_title()

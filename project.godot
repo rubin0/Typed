@@ -61,6 +61,7 @@ default_bus_layout="res://audio_bus.tres"
 [autoload]
 
 SaveState="*res://scripts/SaveState.gd"
+SceneManager="*res://SceneManager.gd"
 
 [display]
 

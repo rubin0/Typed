@@ -7,7 +7,7 @@ signal start_battle
 
 export(bool) var can_be_hit = true
 export(int) var bullets_from_above_number = 8
-export(float) var attack_delay = 2.5
+export(float) var attack_delay = 2
 
 onready var bullet = preload("res://scenes/Bullet.tscn")
 onready var bullets_high = preload("res://scenes/Bullets.tscn")
@@ -31,10 +31,10 @@ func _ready() -> void:
 func trigger():
 	set_process(true)
 	attack_timer  = $Timer
-	attack_timer.start(attack_delay)
+	attack_timer.start(1)
 	$AnimationPlayer.play("idle")
 	emit_signal("start_battle")
-	yield(get_tree().create_timer(attack_delay), "timeout")
+	yield(get_tree().create_timer(3), "timeout")
 	emit_new_word()
 	
 func choose_attack():
@@ -105,7 +105,7 @@ func _on_BossHealth_hit() -> void:
 		$AnimationPlayer.play("death")
 		return
 		
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(attack_delay), "timeout")
 	
 	emit_new_word()
 		
